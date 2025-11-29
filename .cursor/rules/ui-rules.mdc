@@ -1,0 +1,640 @@
+---
+alwaysApply: true
+---
+# Responsive Design System
+
+## Breakpoints
+Following Tailwind CSS default breakpoints:
+- **Mobile**: < 640px (default)
+- **SM (Small)**: ≥ 640px
+- **MD (Medium)**: ≥ 768px
+- **LG (Large)**: ≥ 1024px
+- **XL (Extra Large)**: ≥ 1280px
+- **2XL**: ≥ 1536px
+
+## Container Rules
+- **Mobile (< 640px)**: 
+  - Full width with `px-4` (16px padding)
+  - Max content width: screen width - 32px
+
+- **SM (640px - 767px)**:
+  - Full width with `px-6` (24px padding)
+  - Max content width: screen width - 48px
+
+- **MD (768px - 1023px)**:
+  - Full width with `px-8` (32px padding)
+  - Max content width: screen width - 64px
+
+- **LG (1024px - 1279px)**:
+  - Full width with `px-10` (40px padding)
+  - Max content width: screen width - 80px
+
+- **XL (≥ 1280px)**:
+  - Container: `max-w-[1280px]` with `px-6`
+  - Centered with `mx-auto`
+
+## Typography Scale
+- **Headings**:
+  - H1: `text-3xl sm:text-4xl md:text-5xl lg:text-6xl` (30px → 60px)
+  - H2: `text-2xl sm:text-3xl md:text-4xl lg:text-5xl` (24px → 48px)
+  - H3: `text-xl sm:text-2xl md:text-3xl` (20px → 30px)
+  - Body: `text-sm sm:text-base lg:text-lg` (14px → 18px)
+
+## Layout Rules
+1. **Mobile-First Approach**: Design for mobile first, then scale up
+2. **Flexible Grid**: Use CSS Grid/Flexbox with responsive columns
+3. **Touch Targets**: Minimum 44x44px tap targets on mobile
+4. **Navigation**: 
+   - Mobile & Tablet (< 1024px): Hamburger menu with slide-out drawer
+   - Desktop (≥ 1024px): Horizontal navigation bar with inline CTA buttons
+5. **Images**: Responsive with proper aspect ratios
+6. **Spacing**: Progressive spacing (smaller on mobile, larger on desktop)
+
+## Component Guidelines
+
+### Header
+- Mobile & Tablet (< 1024px): Hamburger menu with drawer navigation
+- Desktop (≥ 1024px): Full horizontal navigation with CTA buttons
+
+### Sections
+- Mobile: Single column, reduced padding
+- Tablet: 2 columns where appropriate
+- Desktop: 3+ columns, full spacing
+
+### Buttons
+- Mobile: Full width or larger sizes
+- Desktop: Auto width with comfortable padding
+
+### Cards/Features
+- Mobile: Stack vertically (1 column)
+- Tablet: 2 columns
+- Desktop: 3 columns
+
+## Utility Classes Pattern
+```
+className="
+  [mobile-styles]
+  sm:[small-screen-styles]
+  md:[medium-screen-styles]
+  lg:[large-screen-styles]
+  xl:[extra-large-styles]
+"
+```
+
+---
+
+# Tailwind Classes Usage Reference
+
+## Layout & Positioning
+
+### Container
+```tsx
+// Standard container (all sections)
+className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-6"
+
+// Full width
+className="w-full"
+
+// Centering
+className="mx-auto"
+```
+
+### Display
+```tsx
+// Flex
+className="flex"
+className="inline-flex"
+
+// Grid
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+
+// Hidden (responsive)
+className="hidden md:flex"
+className="md:hidden"
+```
+
+### Position
+```tsx
+// Fixed header
+className="fixed top-0 left-0 right-0 z-50"
+
+// Relative & Absolute
+className="relative"
+className="absolute inset-0"
+```
+
+### Flexbox
+```tsx
+// Direction
+className="flex flex-col"
+className="flex-row"
+className="sm:flex-row"
+
+// Alignment
+className="items-center"
+className="justify-center"
+className="justify-between"
+
+// Gaps
+className="gap-3 sm:gap-4"
+className="gap-4 xl:gap-[22px]"
+className="space-y-6 sm:space-y-8"
+```
+
+### Grid
+```tsx
+// Columns
+className="grid-cols-1"
+className="md:grid-cols-2"
+className="lg:grid-cols-3"
+
+// Gaps
+className="gap-4 sm:gap-6 lg:gap-8"
+```
+
+---
+
+## Spacing
+
+### Padding
+```tsx
+// All sides
+className="p-2"
+className="p-6 sm:p-8"
+
+// Horizontal
+className="px-3 lg:px-4"
+className="px-4 sm:px-6 lg:px-6"
+
+// Vertical
+className="py-3 sm:py-4"
+className="py-8 sm:py-10 md:py-12"
+className="py-12 sm:py-16 md:py-20 lg:py-24"
+
+// Individual sides
+className="pt-2"
+className="pt-16 sm:pt-20 md:pt-0"
+className="pb-4"
+className="mt-4"
+className="mb-3 sm:mb-4"
+className="mb-8 sm:mb-12 lg:mb-16"
+```
+
+### Margin
+```tsx
+className="mx-auto"
+className="my-4"
+className="mt-4"
+className="mb-3 sm:mb-4"
+```
+
+---
+
+## Sizing
+
+### Width
+```tsx
+className="w-auto"
+className="w-full"
+className="w-full sm:w-auto"
+className="w-6"
+className="max-w-[1280px]"
+className="max-w-2xl"
+```
+
+### Height
+```tsx
+className="h-auto"
+className="h-6"
+className="h-[32px] sm:h-[40px]"
+className="min-h-screen"
+```
+
+---
+
+## Typography
+
+### Font Size (Responsive)
+```tsx
+// Extra Small
+className="text-xs sm:text-sm"
+
+// Small
+className="text-sm sm:text-base"
+className="text-sm sm:text-base lg:text-lg"
+
+// Medium
+className="text-base sm:text-lg"
+
+// Custom sizes
+className="text-[13px] xl:text-[14px]"
+className="text-[14px]"
+
+// Large (Headings)
+className="text-xl sm:text-2xl"
+className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+
+// Icons
+className="text-4xl sm:text-5xl"
+```
+
+### Font Weight
+```tsx
+className="font-medium"
+className="font-semibold"
+className="font-bold"
+```
+
+### Text Alignment
+```tsx
+className="text-center"
+className="text-center md:text-left"
+```
+
+### Text Color
+```tsx
+// White variations
+className="text-white"
+className="text-white/86"
+
+// Zinc variations
+className="text-zinc-400"
+className="text-zinc-900"
+
+// Hover states
+className="hover:text-white"
+```
+
+### Text Wrapping
+```tsx
+className="whitespace-nowrap"
+className="whitespace-pre"
+```
+
+---
+
+## Colors & Backgrounds
+
+### Background Colors
+```tsx
+// Solid
+className="bg-black"
+className="bg-white"
+className="bg-zinc-900"
+
+// Opacity
+className="bg-black/80"
+className="bg-zinc-900/50"
+className="bg-zinc-900/80"
+
+// Gradients
+className="bg-gradient-to-r from-blue-600 to-purple-600"
+className="bg-gradient-to-b from-black to-zinc-950"
+className="bg-gradient-to-b from-black to-[#10a554]"
+className="bg-gradient-to-br from-blue-500/10 to-purple-500/10"
+
+// Hover states
+className="hover:bg-zinc-800"
+className="hover:from-blue-700 hover:to-purple-700"
+```
+
+### Border Colors
+```tsx
+className="border-white/5"
+className="border-white/10"
+className="border-zinc-200"
+className="border-zinc-800"
+className="border-[#1f1f1f]"
+className="border-[#353535]"
+className="hover:border-zinc-700"
+className="hover:border-[#454545]"
+```
+
+### Text Colors (See Typography section)
+
+---
+
+## Borders
+
+### Border Width
+```tsx
+className="border"
+className="border-2"
+className="border-b"
+className="border-t"
+```
+
+### Border Radius
+```tsx
+className="rounded-xl"
+className="rounded-xl sm:rounded-2xl"
+className="rounded-2xl"
+className="rounded-full"
+```
+
+### Border Style
+```tsx
+className="border-solid"
+```
+
+---
+
+## Effects
+
+### Shadow
+```tsx
+className="shadow-lg"
+```
+
+### Opacity
+```tsx
+className="opacity-0"
+className="opacity-50"
+className="opacity-100"
+className="hover:opacity-80"
+className="hover:opacity-90"
+className="disabled:opacity-50"
+className="group-hover:opacity-100"
+```
+
+### Backdrop
+```tsx
+className="backdrop-blur-sm"
+className="backdrop-blur-md"
+```
+
+### Z-Index
+```tsx
+className="z-50"
+className="-z-10"
+```
+
+### Overflow
+```tsx
+className="overflow-hidden"
+```
+
+---
+
+## Transitions & Animations
+
+### Transitions
+```tsx
+className="transition-all"
+className="transition-colors"
+className="transition-opacity"
+className="duration-300"
+className="duration-500"
+```
+
+### Transform
+```tsx
+className="scale-95"
+className="scale-105"
+```
+
+---
+
+## Interactive States
+
+### Hover
+```tsx
+className="hover:text-white"
+className="hover:opacity-80"
+className="hover:bg-zinc-800"
+className="hover:border-zinc-700"
+className="hover:scale-105"
+```
+
+### Focus
+```tsx
+className="focus:outline-none"
+className="focus:ring-2"
+className="focus:ring-offset-2"
+className="focus:ring-blue-500"
+className="focus:ring-zinc-500"
+```
+
+### Disabled
+```tsx
+className="disabled:opacity-50"
+className="disabled:pointer-events-none"
+```
+
+### Group Hover
+```tsx
+// Parent
+className="group"
+
+// Child
+className="group-hover:opacity-100"
+className="group-hover:border-zinc-700"
+className="group-hover:bg-zinc-900/80"
+```
+
+---
+
+## Common Component Patterns
+
+### Header (Fixed)
+```tsx
+className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5"
+```
+
+### Container
+```tsx
+className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-6"
+```
+
+### Section
+```tsx
+className="relative bg-black py-12 sm:py-16 md:py-20 lg:py-24"
+```
+
+### Card
+```tsx
+className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 sm:p-8 backdrop-blur-sm transition-all hover:border-zinc-700 hover:bg-zinc-900/80"
+```
+
+### Button (Primary)
+```tsx
+className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-gradient-to-b from-black to-[#10a554] border border-[#1f1f1f] text-[13px] lg:text-[14px] text-white/86 font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+```
+
+### Button (Secondary)
+```tsx
+className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-black border border-[#353535] text-[13px] lg:text-[14px] text-white/86 font-medium hover:border-[#454545] transition-colors whitespace-nowrap"
+```
+
+### Button (Full Width Mobile)
+```tsx
+className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-b from-black to-[#10a554] border border-[#1f1f1f] text-[14px] text-white/86 font-medium hover:opacity-90 transition-opacity"
+```
+
+### Navigation Link
+```tsx
+className="hover:text-white transition-colors whitespace-nowrap"
+```
+
+### Mobile/Tablet Menu Toggle
+```tsx
+className="lg:hidden p-2 text-white/86 hover:text-white transition-colors z-50 relative"
+```
+
+### Mobile/Tablet Drawer Overlay
+```tsx
+className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+```
+
+### Mobile/Tablet Drawer (Slide from Right)
+```tsx
+// Container - Shows on mobile & tablet, hidden on desktop (≥ 1024px)
+className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] md:w-[360px] bg-black border-l border-white/10 z-50 lg:hidden transform transition-transform duration-300 ease-in-out translate-x-0 | translate-x-full"
+
+// Widths by breakpoint:
+// - Mobile: 280px
+// - Small (≥ 640px): 320px
+// - Medium (≥ 768px): 360px
+
+// Header
+className="flex items-center justify-between px-6 py-4 border-b border-white/10"
+
+// Content
+className="flex-1 overflow-y-auto px-6 py-6"
+
+// Footer
+className="px-6 py-6 border-t border-white/10 space-y-3"
+
+// Menu Items
+className="text-[15px] text-white/86 hover:text-white hover:bg-white/5 transition-all py-3 px-4 rounded-lg"
+```
+
+### Logo (Responsive)
+```tsx
+className="h-[32px] sm:h-[40px] w-auto"
+```
+
+### Feature Grid
+```tsx
+className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+```
+
+### CTA Button Container
+```tsx
+className="flex flex-col gap-3 sm:gap-4 sm:flex-row sm:justify-center px-4"
+```
+
+### Footer Links
+```tsx
+className="flex flex-wrap justify-center gap-4 sm:gap-6"
+```
+
+---
+
+## Custom Values Used
+
+### Custom Spacing
+- `gap-[14px]` - 14px gap
+- `gap-[22px]` - 22px gap
+- `h-[32px]` - 32px height
+- `h-[40px]` - 40px height
+
+### Custom Colors
+- `#10a554` - Krutrim green
+- `#1f1f1f` - Dark border
+- `#353535` - Secondary border
+- `#454545` - Hover border
+- `text-white/86` - 86% opacity white
+- `text-white/5` - 5% opacity white
+- `text-white/10` - 10% opacity white
+
+### Custom Text Sizes
+- `text-[13px]` - 13px
+- `text-[14px]` - 14px
+
+---
+
+## Responsive Patterns
+
+### Show/Hide by Breakpoint
+```tsx
+// Hide on mobile/tablet, show on desktop
+className="hidden lg:flex"
+className="hidden xl:flex"
+
+// Show on mobile/tablet, hide on desktop
+className="lg:hidden"
+
+// Show only on desktop (≥ 768px)
+className="hidden md:flex"
+
+// Show only on mobile (< 768px)
+className="md:hidden"
+```
+
+### Progressive Sizing
+```tsx
+// Padding
+className="px-4 sm:px-6 lg:px-6"
+className="py-12 sm:py-16 md:py-20 lg:py-24"
+
+// Text size
+className="text-sm sm:text-base lg:text-lg"
+
+// Gaps
+className="gap-3 sm:gap-4"
+className="gap-4 sm:gap-6 lg:gap-8"
+
+// Margins
+className="mb-8 sm:mb-12 lg:mb-16"
+```
+
+### Layout Changes
+```tsx
+// Stack on mobile, row on desktop
+className="flex flex-col sm:flex-row"
+
+// 1 column to 2 to 3
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+
+// Full width on mobile, auto on desktop
+className="w-full sm:w-auto"
+```
+
+---
+
+## Accessibility Classes
+
+```tsx
+// Screen reader only
+className="sr-only"
+
+// Focus visible
+className="focus:outline-none focus:ring-2"
+
+// Disabled state
+className="disabled:opacity-50 disabled:pointer-events-none"
+
+// Touch targets (minimum 44x44px on mobile)
+// Applied via global CSS for mobile breakpoints
+```
+
+---
+
+## Dark Mode Support
+
+```tsx
+// Background
+className="bg-white dark:bg-zinc-900"
+
+// Text
+className="text-zinc-900 dark:text-zinc-100"
+
+// Borders
+className="border-zinc-200 dark:border-zinc-800"
+
+// Hover states
+className="hover:bg-zinc-100 dark:hover:bg-zinc-800"
+```
+
