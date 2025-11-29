@@ -1,5 +1,50 @@
 @import "tailwindcss";
 
+@theme {
+  --max-width-container: 1280px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes infinite-scroll-continuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll var(--scroll-duration, 80s) linear infinite;
+  will-change: transform;
+}
+
+.animate-infinite-scroll-continuous {
+  animation: infinite-scroll-continuous 80s linear infinite;
+  will-change: transform;
+}
+
 /* Open Sauce One Font */
 @font-face {
   font-family: 'Open Sauce One';
@@ -99,4 +144,15 @@ body {
   :focus {
     scroll-margin-top: 5rem;
   }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

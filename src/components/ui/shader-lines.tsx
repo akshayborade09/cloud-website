@@ -70,6 +70,7 @@ export function ShaderAnimation() {
     const uniforms = {
       time: { type: "f", value: 1.0 },
       resolution: { type: "v2", value: new THREE.Vector2() },
+      scale: { type: "f", value: window.innerWidth < 768 ? 0.5 : 1.0 }, // 0.5x on mobile
     }
 
     // Vertex shader
@@ -87,6 +88,7 @@ export function ShaderAnimation() {
       precision highp float;
       uniform vec2 resolution;
       uniform float time;
+      uniform float scale;
         
       float random (in float x) {
           return fract(sin(x)*1e4);
@@ -102,7 +104,8 @@ export function ShaderAnimation() {
       void main(void) {
         vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
         
-        vec2 fMosaicScal = vec2(4.0, 2.0);
+        // Apply scale (0.5 on mobile = 2x mosaic scale for smaller patterns)
+        vec2 fMosaicScal = vec2(4.0, 2.0) / scale;
         vec2 vScreenSize = vec2(256,256);
         uv.x = floor(uv.x * vScreenSize.x / fMosaicScal.x) / (vScreenSize.x / fMosaicScal.x);
         uv.y = floor(uv.y * vScreenSize.y / fMosaicScal.y) / (vScreenSize.y / fMosaicScal.y);       
@@ -157,6 +160,8 @@ export function ShaderAnimation() {
       renderer.setSize(rect.width, rect.height)
       uniforms.resolution.value.x = renderer.domElement.width
       uniforms.resolution.value.y = renderer.domElement.height
+      // Update scale based on viewport width (0.5x on mobile)
+      uniforms.scale.value = window.innerWidth < 768 ? 0.5 : 1.0
     }
 
     onWindowResize()
@@ -165,7 +170,7 @@ export function ShaderAnimation() {
     // Animation loop
     const animate = () => {
       sceneRef.current.animationId = requestAnimationFrame(animate)
-      uniforms.time.value += 0.06 // Reduced to 80% speed (0.12 * 0.8)
+      uniforms.time.value += 0.04 // Reduced to 80% speed (0.12 * 0.8)
       renderer.render(scene, camera)
     }
 
@@ -175,7 +180,7 @@ export function ShaderAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full absolute" 
+      className="w-full h-full absolute opacity-50 -translate-y-16 sm:-translate-y-16 md:translate-y-0"
     />
   )
 }

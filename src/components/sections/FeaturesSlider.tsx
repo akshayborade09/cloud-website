@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,6 +33,8 @@ const slides = [
 
 export default function FeaturesSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-slide: image stays for 5 seconds after slide-in completes
   useEffect(() => {
@@ -42,6 +44,24 @@ export default function FeaturesSlider() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Scroll active tab into view within the container only
+  useEffect(() => {
+    const activeTab = tabRefs.current[activeIndex];
+    const scrollContainer = scrollContainerRef.current;
+    
+    if (activeTab && scrollContainer) {
+      const tabLeft = activeTab.offsetLeft;
+      const tabWidth = activeTab.offsetWidth;
+      const containerWidth = scrollContainer.offsetWidth;
+      const scrollLeft = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+      
+      scrollContainer.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeIndex]);
 
   // Helper functions to get adjacent indices
   const getPrevIndex = () => (activeIndex - 1 + slides.length) % slides.length;
@@ -53,50 +73,53 @@ export default function FeaturesSlider() {
       style={{ fontFamily: "'Open Sauce One', sans-serif" }}
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-6 overflow-hidden">
-        <div className="flex flex-col gap-6 sm:gap-8 md:gap-20 items-center">
+        <div className="flex flex-col gap-6 sm:gap-8 md:gap-20 items-center w-full">
           {/* Tabs */}
-          <div className="bg-neutral-900 rounded-2xl p-1.5 sm:p-2 inline-flex gap-2 sm:gap-4">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => setActiveIndex(index)}
-                className={`
-                  relative px-4 sm:px-6 py-3 sm:py-4 rounded-xl transition-all duration-300 whitespace-nowrap text-sm sm:text-base font-medium
-                  ${
-                    activeIndex === index
-                      ? "bg-gradient-to-b from-black to-[#181818] border border-[#353535] text-[#f8f8f8]"
-                      : "text-white/86 hover:text-white"
-                  }
-                `}
-              >
-                {slide.title}
-                {activeIndex === index && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at center, rgba(16, 165, 84, 0.8) 0%, transparent 70%)",
-                      filter: "blur(4px)",
-                    }}
-                  />
-                )}
-              </button>
-            ))}
+          <div ref={scrollContainerRef} className="w-full overflow-x-auto overflow-y-visible scrollbar-hide rounded-xl flex justify-center">
+            <div className="bg-neutral-900 rounded-2xl p-1.5 sm:p-2 inline-flex gap-1.5 sm:gap-2 md:gap-4 min-w-min">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  ref={(el) => { tabRefs.current[index] = el; }}
+                  onClick={() => setActiveIndex(index)}
+                  className={`
+                    relative px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 rounded-xl transition-all duration-300 whitespace-nowrap text-xs sm:text-sm md:text-base font-medium flex-shrink-0
+                    ${
+                      activeIndex === index
+                        ? "bg-gradient-to-b from-black to-[#181818] border border-[#353535] text-[#f8f8f8]"
+                        : "text-white/86 hover:text-white"
+                    }
+                  `}
+                >
+                  {slide.title}
+                  {activeIndex === index && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse at center, rgba(16, 165, 84, 0.8) 0%, transparent 70%)",
+                        filter: "blur(4px)",
+                      }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Slider Container - 3 Image Carousel */}
-          <div className="relative w-full h-[400px] sm:h-[520px] md:h-[580px] lg:h-[650px]">
+          <div className="relative w-full h-[400px] sm:h-[520px] md:h-[580px] lg:h-[650px] overflow-hidden">
             <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[90%] sm:w-[85%] md:w-[80%] lg:w-[80%] h-full">
               <AnimatePresence initial={false} mode="sync">
                 {/* Left Image (Previous) - Same size, partially visible */}
                 <motion.div
                   key={`prev-${getPrevIndex()}`}
-                  initial={{ x: "0%", opacity: 0.4 }}
-                  animate={{ x: "-105%", opacity: 0.4 }}
-                  exit={{ x: "-210%", opacity: 0 }}
+                  initial={{ x: "0%", opacity: 1 }}
+                animate={{ x: "-103%", opacity: 1 }}
+                exit={{ x: "-206%", opacity: 0 }}
                   transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                  className="absolute left-0 top-0 w-full h-full rounded-2xl sm:rounded-3xl border border-[#212121"
+                  className="absolute left-0 top-0 w-full h-full rounded-2xl sm:rounded-3xl border border-[#414141] overflow-hidden"
                 >
                   <Image
                     src={slides[getPrevIndex()].image}
@@ -109,9 +132,9 @@ export default function FeaturesSlider() {
                 {/* Center Image (Current) - Same size, fully visible */}
                 <motion.div
                   key={`current-${activeIndex}`}
-                  initial={{ x: "105%", opacity: 0.4 }}
+                  initial={{ x: "103%", opacity: 0.4 }}
                   animate={{ x: "0%", opacity: 1 }}
-                  exit={{ x: "-105%", opacity: 0.4 }}
+                  exit={{ x: "-103%", opacity: 0.4 }}
                   transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                   className="absolute left-0 top-0 w-full h-full rounded-2xl sm:rounded-3xl border border-[#414141] overflow-hidden"
                 >
@@ -151,11 +174,11 @@ export default function FeaturesSlider() {
                 {/* Right Image (Next) - Same size, partially visible */}
                 <motion.div
                   key={`next-${getNextIndex()}`}
-                  initial={{ x: "210%", opacity: 0 }}
-                  animate={{ x: "105%", opacity: 0.4 }}
-                  exit={{ x: "0%", opacity: 0.4 }}
+                  initial={{ x: "206%", opacity: 0 }}
+                  animate={{ x: "103%", opacity: 1 }}
+                  exit={{ x: "0%", opacity: 1 }}
                   transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                  className="absolute left-0 top-0 w-full h-full rounded-2xl sm:rounded-3xl border border-[#212121] overflow-hidden"
+                  className="absolute left-0 top-0 w-full h-full rounded-2xl sm:rounded-3xl border border-[#414141] overflow-hidden"
                 >
                   <Image
                     src={slides[getNextIndex()].image}

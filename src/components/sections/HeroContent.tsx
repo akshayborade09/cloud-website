@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroContent() {
   return (
-    <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 max-w-[1280px] mx-auto">
+    <div className="flex flex-col items-center gap-8 sm:gap-8 md:gap-10 px-4 sm:px-6 max-w-[1280px] mx-auto pt-5">
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -13,13 +13,13 @@ export default function HeroContent() {
         className="flex flex-col items-center w-full"
       >
         <h1 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center leading-[1.4] mb-2"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center leading-[1.4] mb-2"
           style={{ fontFamily: "'Open Sauce One', sans-serif" }}
         >
           India's AI-First Cloud. Built to Scale.
         </h1>
         <h1 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-center leading-[1.4]"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center leading-[1.4]"
           style={{ 
             fontFamily: "'Open Sauce One', sans-serif",
             color: '#21cd6f'

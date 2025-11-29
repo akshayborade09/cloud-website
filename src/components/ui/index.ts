@@ -3,4 +3,6 @@ export { default as Button } from "./Button";
 export { default as Card } from "./Card";
 export { BlurredInfiniteSlider } from "./infinite-slider";
 export { ShaderAnimation } from "./shader-lines";
+export { Avatar, AvatarImage, AvatarFallback } from "./avatar";
+export { TestimonialCard, type TestimonialAuthor, type TestimonialCardProps } from "./testimonial-card";
 
