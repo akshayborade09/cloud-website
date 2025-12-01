@@ -75,8 +75,8 @@ export default function FeaturesSlider() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-6 overflow-hidden">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-20 items-center w-full">
           {/* Tabs */}
-          <div ref={scrollContainerRef} className="w-full overflow-x-auto overflow-y-visible scrollbar-hide rounded-xl flex justify-center">
-            <div className="bg-neutral-900 rounded-2xl p-1.5 sm:p-2 inline-flex gap-1.5 sm:gap-2 md:gap-4 min-w-min">
+          <div ref={scrollContainerRef} className="w-full overflow-x-auto overflow-y-visible scrollbar-hide rounded-xl flex justify-start md:justify-center px-4 md:px-0">
+            <div className="bg-neutral-900 rounded-2xl p-1.5 sm:p-2 inline-flex gap-1.5 sm:gap-2 md:gap-4 min-w-min mx-0 md:mx-auto">
               {slides.map((slide, index) => (
                 <button
                   key={slide.id}
@@ -125,7 +125,7 @@ export default function FeaturesSlider() {
                     src={slides[getPrevIndex()].image}
                     alt={slides[getPrevIndex()].title}
                     fill
-                    className="object-cover"
+                    className="object-cover object-right md:object-center"
                   />
                 </motion.div>
 
@@ -143,19 +143,20 @@ export default function FeaturesSlider() {
                     src={slides[activeIndex].image}
                     alt={slides[activeIndex].title}
                     fill
-                    className="object-cover"
+                    className="object-cover object-right md:object-center"
                     priority
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+                  {/* Gradient Overlay - Bottom on Mobile, Left on Desktop */}
+                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black via-black/70 to-transparent md:hidden" />
+                  <div className="hidden md:block absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
-                  {/* Content */}
-                  <div className="absolute left-6 sm:left-10 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 w-[280px] sm:w-[280px] md:w-[320px] lg:w-[320px] xl:w-[320px] z-10">                    <motion.h3
+                  {/* Content - Bottom on Mobile, Center-Left on Desktop */}
+                  <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 md:left-12 md:right-auto md:top-1/2 md:-translate-y-1/2 md:bottom-auto lg:left-16 w-auto md:w-[320px] lg:w-[320px] xl:w-[320px] z-10">                    <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.4 }}
-                      className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl leading-tight mb-2 sm:mb-3"
+                      className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl leading-tight mb-2 sm:mb-3 text-center md:text-left"
                     >
                       {slides[activeIndex].title}
                     </motion.h3>
@@ -163,7 +164,7 @@ export default function FeaturesSlider() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.4 }}
-                      className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg font-light leading-relaxed"
+                      className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg font-light leading-relaxed text-center md:text-left"
                     >
                       {slides[activeIndex].description}
                     </motion.p>
@@ -183,7 +184,7 @@ export default function FeaturesSlider() {
                     src={slides[getNextIndex()].image}
                     alt={slides[getNextIndex()].title}
                     fill
-                    className="object-cover"
+                    className="object-cover object-right md:object-center"
                   />
                 </motion.div>
               </AnimatePresence>

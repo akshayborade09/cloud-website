@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroContent() {
   return (
-    <div className="flex flex-col items-center gap-8 sm:gap-8 md:gap-10 px-4 sm:px-6 max-w-[1280px] mx-auto pt-5">
+    <div className="flex flex-col items-center gap-8 sm:gap-8 md:gap-10 px-4 sm:px-6 max-w-[1280px] mx-auto pb-20 md:pb-0">
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

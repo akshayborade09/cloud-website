@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Hero Section with Shader Animation - Normal Scroll */}
       <section 
-        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-16 sm:pt-20 md:pt-0"
+        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-8 sm:pt-12 md:pt-0"
       >
         {/* Shader Background */}
         <ShaderAnimation />
