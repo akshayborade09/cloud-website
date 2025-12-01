@@ -9,25 +9,25 @@ const slides = [
     id: 1,
     title: "AI-Ready Infrastructure",
     description: "Train, fine-tune, deploy on GPU Baremetals, GPU VMs, AI Pods.",
-    image: "/homepage-slider/slider-img-1.png",
+    image: "/homepage-slider/ai-infrastructure.png",
   },
   {
     id: 2,
     title: "Green Cloud",
     description: "Sustainable cloud infrastructure powered by renewable energy.",
-    image: "/homepage-slider/slider-img-1.png",
+    image: "/homepage-slider/green-cloud.png",
   },
   {
     id: 3,
     title: "AI Studio",
     description: "Complete AI development environment for building intelligent applications.",
-    image: "/homepage-slider/slider-img-1.png",
+    image: "/homepage-slider/ai-studio.png",
   },
   {
     id: 4,
     title: "Enterprise AI Solutions",
     description: "Bhashik, Document Intelligence, Indic Speech APIs.",
-    image: "/homepage-slider/slider-img-1.png",
+    image: "/homepage-slider/enterprise-ai.png",
   },
 ];
 
@@ -151,8 +151,7 @@ export default function FeaturesSlider() {
                   <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
                   {/* Content */}
-                  <div className="absolute left-6 sm:left-10 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 max-w-[200px] sm:max-w-[280px] md:max-w-sm lg:max-w-md z-10">
-                    <motion.h3
+                  <div className="absolute left-6 sm:left-10 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 w-[280px] sm:w-[280px] md:w-[320px] lg:w-[320px] xl:w-[320px] z-10">                    <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.4 }}

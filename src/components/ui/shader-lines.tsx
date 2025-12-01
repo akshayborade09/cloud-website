@@ -170,7 +170,7 @@ export function ShaderAnimation() {
     // Animation loop
     const animate = () => {
       sceneRef.current.animationId = requestAnimationFrame(animate)
-      uniforms.time.value += 0.04 // Reduced to 80% speed (0.12 * 0.8)
+      uniforms.time.value += 0.05 // Reduced to 80% speed (0.12 * 0.8)
       renderer.render(scene, camera)
     }
 
@@ -180,7 +180,7 @@ export function ShaderAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full absolute opacity-50 -translate-y-16 sm:-translate-y-16 md:translate-y-0"
+      className="w-full h-full absolute opacity-60 -translate-y-16 sm:-translate-y-16 md:translate-y-0"
     />
   )
 }

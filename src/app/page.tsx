@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { ShaderAnimation } from "@/components/ui/shader-lines";
 import { Header, HeroContent, TrustedByLogos, FeaturesSlider, BentoGrid, Testimonials, Footer } from "@/components/sections";
 import { motion } from "framer-motion";
@@ -41,32 +40,14 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const [scrollBlur, setScrollBlur] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = 600; // Maximum scroll distance for blur effect
-      const blurAmount = Math.min((scrollY / maxScroll) * 10, 10); // Max blur 10px
-      setScrollBlur(blurAmount);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <main className="min-h-screen bg-black relative">
       {/* Header */}
       <Header />
 
-      {/* Hero Section with Shader Animation - Fixed */}
+      {/* Hero Section with Shader Animation - Normal Scroll */}
       <section 
-        className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-16 sm:pt-20 md:pt-0 z-0"
-        style={{
-          filter: `blur(${scrollBlur}px)`,
-          transition: 'filter 0.1s ease-out'
-        }}
+        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden pt-16 sm:pt-20 md:pt-0"
       >
         {/* Shader Background */}
         <ShaderAnimation />
@@ -88,8 +69,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scrollable Content Container - Scrolls over hero */}
-      <div className="relative z-10 bg-black">
+      {/* Content Sections */}
+      <div className="relative bg-black">
       {/* Features Slider Section */}
       <FeaturesSlider />
 
