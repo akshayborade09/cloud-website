@@ -5,14 +5,14 @@ import Link from "next/link";
 
 const footerLinks = {
   product: [
-    { label: "AI Cloud", href: "#" },
-    { label: "General Cloud", href: "#" },
-    { label: "AI Studio", href: "#" },
+    { label: "AI Cloud", href: "/ai-cloud" },
+    { label: "General Cloud", href: "/general-cloud" },
+    { label: "AI Studio", href: "/ai-studio" },
     { label: "Pricing", href: "#" },
     { label: "Documentation", href: "#" },
   ],
   solutions: [
-    { label: "AI Solutions", href: "#" },
+    { label: "AI Solutions", href: "/ai-solutions" },
     { label: "Enterprise", href: "#" },
     { label: "Startups", href: "#" },
     { label: "Healthcare", href: "#" },
@@ -61,7 +61,7 @@ export default function Footer() {
 
             {/* Right CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full md:w-auto">
-              <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#06120b] via-[#0a562d] to-[#21cd6f] border border-[#1f1f1f] text-base sm:text-lg text-white/86 font-bold hover:opacity-90 transition-opacity whitespace-nowrap">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#21CD6F] to-[#13452A] text-base sm:text-lg text-white font-bold hover:opacity-90 transition-opacity whitespace-nowrap">
                 Start Free Trial
               </button>
               <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-black border border-[#353535] text-base sm:text-lg text-white/86 font-bold hover:border-[#454545] transition-colors whitespace-nowrap">

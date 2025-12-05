@@ -8,13 +8,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#ai-cloud", label: "AI Cloud" },
-    { href: "#general-cloud", label: "General Cloud" },
-    { href: "#ai-studio", label: "AI Studio" },
-    { href: "#ai-solutions", label: "AI Solutions" },
-    { href: "#case-studies", label: "Case Studies" },
-    { href: "#developers", label: "Developers" },
-    { href: "#contact", label: "Contact Us" },
+    { href: "/ai-cloud", label: "AI Cloud" },
+    { href: "/general-cloud", label: "General Cloud" },
+    { href: "/ai-studio", label: "AI Studio" },
+    { href: "/ai-solutions", label: "AI Solutions" },
   ];
 
   // Prevent body scroll when drawer is open
@@ -50,7 +47,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-4 xl:gap-[22px] text-[13px] xl:text-[14px] text-white/86 font-medium">
+            <nav className="hidden lg:flex items-center gap-8 xl:gap-[22px] text-[13px] xl:text-[14px] text-white/86 font-medium">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -64,10 +61,10 @@ export default function Header() {
 
             {/* Desktop CTA Buttons (shown on large screens when nav is visible) */}
             <div className="hidden lg:flex items-center gap-3 lg:gap-[14px]">
-              <button className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-gradient-to-b from-black to-[#10a554] border border-[#1f1f1f] text-[13px] lg:text-[14px] text-white/86 font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
+              <button className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg bg-gradient-to-b from-[#21CD6F] to-[#13452A] text-[13px] lg:text-[14px] text-white font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
                 Get Started
               </button>
-              <button className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-black border border-[#353535] text-[13px] lg:text-[14px] text-white/86 font-medium hover:border-[#454545] transition-colors whitespace-nowrap">
+              <button className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg bg-black border border-[#353535] text-[13px] lg:text-[14px] text-white/86 font-medium hover:border-[#454545] transition-colors whitespace-nowrap">
                 Contact Sales
               </button>
             </div>
@@ -156,7 +153,7 @@ export default function Header() {
           {/* Drawer Footer - CTA Buttons */}
           <div className="px-6 py-6 border-t border-white/10 space-y-3">
             <button 
-              className="w-full px-4 py-3 rounded-xl bg-gradient-to-b from-black to-[#10a554] border border-[#1f1f1f] text-[14px] text-white/86 font-medium hover:opacity-90 transition-opacity"
+              className="w-full px-4 py-3 rounded-xl bg-gradient-to-b from-[#21CD6F] to-[#13452A] text-[14px] text-white font-medium hover:opacity-90 transition-opacity"
               onClick={() => setMobileMenuOpen(false)}
             >
               Get Started

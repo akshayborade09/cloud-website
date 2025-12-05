@@ -77,34 +77,34 @@ export default function FeaturesSlider() {
           {/* Tabs */}
           <div ref={scrollContainerRef} className="w-full overflow-x-auto overflow-y-visible scrollbar-hide rounded-xl flex justify-start md:justify-center px-4 md:px-0">
             <div className="bg-neutral-900 rounded-2xl p-1.5 sm:p-2 inline-flex gap-1.5 sm:gap-2 md:gap-4 min-w-min mx-0 md:mx-auto">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.id}
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
                   ref={(el) => { tabRefs.current[index] = el; }}
-                  onClick={() => setActiveIndex(index)}
-                  className={`
+                onClick={() => setActiveIndex(index)}
+                className={`
                     relative px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 rounded-xl transition-all duration-300 whitespace-nowrap text-xs sm:text-sm md:text-base font-medium flex-shrink-0
-                    ${
-                      activeIndex === index
-                        ? "bg-gradient-to-b from-black to-[#181818] border border-[#353535] text-[#f8f8f8]"
-                        : "text-white/86 hover:text-white"
-                    }
-                  `}
-                >
-                  {slide.title}
-                  {activeIndex === index && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2"
-                      style={{
-                        background:
-                          "radial-gradient(ellipse at center, rgba(16, 165, 84, 0.8) 0%, transparent 70%)",
-                        filter: "blur(4px)",
-                      }}
-                    />
-                  )}
-                </button>
-              ))}
+                  ${
+                    activeIndex === index
+                      ? "bg-gradient-to-b from-black to-[#181818] border border-[#353535] text-[#f8f8f8]"
+                      : "text-white/86 hover:text-white"
+                  }
+                `}
+              >
+                {slide.title}
+                {activeIndex === index && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at center, rgba(16, 165, 84, 0.8) 0%, transparent 70%)",
+                      filter: "blur(4px)",
+                    }}
+                  />
+                )}
+              </button>
+            ))}
             </div>
           </div>
 

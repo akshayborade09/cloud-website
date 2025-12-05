@@ -180,7 +180,7 @@ export function ShaderAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full absolute opacity-60 -translate-y-24 sm:-translate-y-24 md:translate-y-0"
+      className="w-full h-full absolute opacity-60 -translate-y-16 sm:-translate-y-16 md:translate-y-0"
     />
   )
 }

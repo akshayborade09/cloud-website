@@ -464,7 +464,7 @@ className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-gradient-to-b from-black to
 
 ### Button (Secondary)
 ```tsx
-className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl bg-black border border-[#353535] text-[13px] lg:text-[14px] text-white/86 font-medium hover:border-[#454545] transition-colors whitespace-nowrap"
+className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg bg-black border border-[#353535] text-[13px] lg:text-[14px] text-white/86 font-medium hover:border-[#454545] transition-colors whitespace-nowrap"
 ```
 
 ### Button (Full Width Mobile)

@@ -49,7 +49,7 @@ export default function HeroContent() {
       >
         {/* Get Started Button */}
         <button
-          className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#06120b] via-[#0a562d] to-[#21cd6f] border border-[#1f1f1f] text-base sm:text-lg text-white/86 font-bold hover:opacity-90 transition-opacity"
+          className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#21CD6F] to-[#13452A] text-base sm:text-lg text-white font-bold hover:opacity-90 transition-opacity"
           style={{ fontFamily: "'Open Sauce One', sans-serif" }}
         >
           Get Started
